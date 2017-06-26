@@ -3,7 +3,7 @@
 AWK=/usr/bin/awk
 SED=/usr/bin/sed
 
-USER=dalmatiner
+USER=dalmatinerpx
 GROUP=$USER
 
 case $2 in
@@ -12,14 +12,14 @@ case $2 in
         then
             echo "Group already exists, skipping creation."
         else
-            echo Creating dalmatinerfe group ...
+            echo Creating dalmatinerpx group ...
             groupadd $GROUP
         fi
         if id $USER > /dev/null 2>&1
         then
             echo "User already exists, skipping creation."
         else
-            echo Creating dalmatinerfe user ...
+            echo Creating dalmatinerpx user ...
             useradd -g $GROUP -d /data/dalmatinerpx -s /bin/false $USER
             /usr/sbin/usermod -K defaultpriv=basic,net_privaddr $USER
         fi
@@ -28,7 +28,7 @@ case $2 in
         mkdir -p /data/dalmatinerpx/db
         mkdir -p /data/dalmatinerpx/log/sasl
         chown -R $USER:$GROUP /data/dalmatinerpx
-        if [ -d /tmp/dalmatinerpx ]
+	if [ -d /tmp/dalmatinerpx ]
         then
             chown -R $USER:$GROUP /tmp/dalmatinerpx
         fi
